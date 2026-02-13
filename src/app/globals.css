@@ -1,26 +1,106 @@
+@import '../styles/_variables.scss';
+@import '../styles/_keyframe-animations.scss';
+
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0f0f14;
+  --foreground: #f5f1e9;
+  --muted: #b7b0a3;
+  --surface: #14141b;
+  --card: #1a1a24;
+  --accent: #f6c356;
+  --accent-2: #7ad7ff;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-sans: var(--font-space-grotesk);
+  --font-mono: var(--font-plex-mono);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), ui-sans-serif, system-ui;
+  min-height: 100vh;
+}
+
+main {
+  background:
+    radial-gradient(1200px 800px at 80% -10%, rgba(122, 215, 255, 0.2), transparent 60%),
+    radial-gradient(900px 700px at -10% 10%, rgba(246, 195, 86, 0.18), transparent 60%),
+    linear-gradient(180deg, #0f0f14 0%, #11111a 45%, #0e0e13 100%);
+}
+
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4,
+.prose h5,
+.prose h6 {
+  margin: 1.2rem 0 0.6rem;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.prose p {
+  margin: 0.6rem 0;
+  line-height: 1.6;
+  color: #1f2937;
+}
+
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+}
+
+.prose th,
+.prose td {
+  border: 1px solid #e2e8f0;
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+.prose ul,
+.prose ol {
+  margin: 0.6rem 0 0.6rem 1.2rem;
+  list-style-position: outside;
+  color: #1f2937;
+}
+
+.prose ul {
+  list-style-type: disc;
+}
+
+.prose ol {
+  list-style-type: decimal;
+}
+
+.prose li {
+  margin: 0.3rem 0;
+  color: #1f2937;
+}
+
+.prose mark,
+.prose span[style*="background-color"] {
+  background-color: #fde68a;
+  color: #111827;
+}
+
+.prose li::marker {
+  color: #0f172a;
+}
+
+.prose a {
+  color: #2563eb;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.prose a:visited {
+  color: #4f46e5;
 }

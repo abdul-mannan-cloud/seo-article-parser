@@ -1,36 +1,80 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# SEO Article QA Dashboard
 
-## Getting Started
+A Next.js app for parsing Google Doc articles, running SEO quality checks, editing content in a WYSIWYG editor, and previewing a publish-ready view.
 
-First, run the development server:
+## What This System Does
+- Fetches a Google Doc by ID or URL and extracts article content.
+- Parses metadata, headings, links, images, alt tags, and basic formatting.
+- Runs SEO quality checks (images, product links, meta lengths, formatting).
+- Provides a clean overview dashboard with pass/fail highlights.
+- Lets editors update content in a rich WYSIWYG editor.
+- Supports meta title/description editing via a modal.
+- Shows a full-page publish preview (bottom sheet) before confirming publish.
+- Recomputes SEO stats from the edited HTML.
 
+## Key Features
+- **Google Doc intake**: paste a full URL or ID.
+- **Metadata extraction**: meta title + description, article title, headings.
+- **Image parsing**: detects Drive image links and alt tags.
+- **Product link checks**: detects unique product/collection URLs.
+- **Formatting checks**: headings, lists/emphasis, tables.
+- **Editor**: WYSIWYG (Tiptap Simple Editor).
+- **Publish preview**: full-page, formatted HTML preview.
+- **Update Stats**: re-run checks on edited HTML.
+
+## Tech Stack
+- Next.js (App Router)
+- React
+- Tailwind CSS
+- Cheerio
+- Motion (motion.dev)
+- Tiptap (Simple Editor)
+
+## Install & Run
+
+### 1) Install dependencies
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2) Run the dev server
+```bash
+npm run dev
+```
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+Open:
+```
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## How To Use
+1. Paste a Google Doc link or ID in the search bar.
+2. Press Enter or click **Analyze**.
+3. Review the Overview dashboard (SEO checklist, headings, links, media).
+4. Click **Edit & Review Article** to open the WYSIWYG editor.
+5. Click **Edit Meta Tags** to update meta title/description.
+6. Make content edits in the editor.
+7. Click **Update Stats** to re-run SEO checks on edited content.
+8. Click **Publish to WordPress** to open the publish preview.
+9. Confirm publish (placeholder action shows a toast).
 
-## Learn More
+## API Routes
+- `POST /api/parse-article`
+  - Body: `{ docId: string }`
+  - Fetches the doc HTML, parses data, returns article + quality.
 
-To learn more about Next.js, take a look at the following resources:
+- `POST /api/parse-html`
+  - Body: `{ html: string }`
+  - Parses edited HTML and returns updated article + quality.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Notes
+- Publishing is a placeholder (toast only).
+- The app assumes public access to Google Doc and Drive links.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Scripts
+```bash
+npm run dev
+npm run build
+npm run start
+npm run lint
+```
